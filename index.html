@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Convertidor de Enlaces</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #0077cc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔗 Convertidor de Enlaces</h1>
+  <input type="text" id="inputLink" placeholder="Pega aquí tu enlace original">
+  <button onclick="convertLink()">Convertir</button>
+
+  <div id="output"></div>
+
+  <script>
+    function convertLink() {
+      const input = document.getElementById("inputLink").value;
+      const leadMatch = input.match(/\/Lead\/([^\/]+)\//i);
+      const oppMatch = input.match(/\/Opportunity\/([^\/]+)\//i);
+      let newLink = "";
+
+      if (leadMatch) {
+        newLink = `https://www.connectedcustomer360.com/s/lead/${leadMatch[1]}/`;
+      } else if (oppMatch) {
+        newLink = `https://www.connectedcustomer360.com/s/opportunity/${oppMatch[1]}/`;
+      } else {
+        newLink = "❌ Formato de enlace no válido.";
+      }
+
+      if (newLink.startsWith("https")) {
+        document.getElementById("output").innerHTML = `
+          ✅ Enlace convertido:<br>
+          <input type="text" value="${newLink}" id="convertedLink" readonly style="width:80%; font-size:16px;">
+          <button onclick="copyLink()">Copiar</button>
+        `;
+      } else {
+        document.getElementById("output").innerText = newLink;
+      }
+    }
+
+    function copyLink() {
+      const copyText = document.getElementById("convertedLink");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); // Para móviles
+      document.execCommand("copy");
+      alert("¡Enlace copiado al portapapeles!");
+    }
+  </script>
+
+</body>
+</html>
