@@ -28,15 +28,38 @@
       font-size: 18px;
       color: #0077cc;
     }
+    #howToUse {
+      background-color: #fff;
+      padding: 15px;
+      border-left: 5px solid #0077cc;
+      margin-top: 40px;
+    }
+    code {
+      background-color: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
 
   <h1>🔗 Convertidor de Enlaces</h1>
+
   <input type="text" id="inputLink" placeholder="Pega aquí tu enlace original">
   <button onclick="convertLink()">Convertir</button>
 
   <div id="output"></div>
+
+  <section id="howToUse">
+    <h2>🛠 Cómo usar esta herramienta</h2>
+    <ul>
+      <li>Copie el enlace completo del Lead o Oportunidad en Salesforce.</li>
+      <li>Ponga en el campo abajo el link completo.</li>
+      <li>Haz clic en el botón <strong>Convertir</strong>.</li>
+      <li>Verás el nuevo enlace generado en el formato correcto.</li>
+      <li>Haz clic en <strong>Copiar</strong> para guardarlo en tu portapapeles.</li>
+    </ul>
+  </section>
 
   <script>
     function convertLink() {
